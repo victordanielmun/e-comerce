@@ -12,7 +12,7 @@ const Header = () => {
     }
   }
   return (
-    <div className="sticky top-0 z-40 md:bg-transparent lg:bg-transparent max-sm:bg-[#03045E]" id="Header">
+    <div className="sticky top-0 z-40 md:bg-[#03045E] lg:bg-transparent max-sm:bg-[#03045E]" id="Header">
       <header className="flex justify-between items-center px-3 max-w-6xl mx-auto">
         <div>
           <img
