@@ -1,9 +1,12 @@
+import { getAuth, signOut } from 'firebase/auth';
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import React from "react";
 
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const auth = getAuth()
 
   //funcion cambiar clase de elementos lista ul navbar
   function pathMathRouter(route) {
@@ -11,6 +14,17 @@ const Header = () => {
       return true;
     }
   }
+
+  const logOut = async () => {
+    try {
+      await signOut(auth);
+      toast.success('Cerro sesion exitosamente');
+
+    } catch (error) {
+      toast.error(error.message)
+    } 
+  }
+
   return (
     <div className="sticky top-0 z-40 md:bg-[#03045E] lg:bg-transparent max-sm:bg-[#03045E]" id="Header">
       <header className="flex justify-between items-center px-3 max-w-6xl mx-auto">
@@ -47,6 +61,12 @@ const Header = () => {
               onClick={() => navigate("/SignIn")}
             >
               Sign In
+            </li>
+            <li
+              className="cursor-pointer py-3 text-sm font-semibold border-b-[3px] text-gray-400 border-b-transparent" 
+              onClick={logOut}
+            >
+              Log Out
             </li>
           </ul>
         </div>
