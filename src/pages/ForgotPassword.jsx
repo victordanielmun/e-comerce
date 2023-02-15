@@ -54,7 +54,7 @@ const ForgotPassword = () => {
               
               <div className="mb-2">
                 <label
-                  for="email"
+                  htmlFor="email"
                   className="block sm:text-xs lg:text-lg md:text-md font-semibold text-gray-800"
                 >
                   Email

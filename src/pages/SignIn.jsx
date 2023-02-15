@@ -52,7 +52,7 @@ const SignIn = () => {
             <form className="mt-6">
               <div className="mb-2">
                 <label
-                  for="email"
+                  htmlFor="email"
                   className="block sm:text-xs lg:text-lg md:text-md font-semibold text-gray-800"
                 >
                   Email
@@ -67,7 +67,7 @@ const SignIn = () => {
               </div>
               <div className="mb-2 relative">
                 <label
-                  for="password"
+                  htmlFor="password"
                   className="sm:text-xs lg:text-lg md:text-md block font-semibold text-gray-800"
                 >
                   Password
@@ -105,14 +105,14 @@ const SignIn = () => {
             <p className="sm:text-xs lg:text-lg md:text-md mt-4 font-light text-center text-[#03045E]">
               {" "}
               No tienes una cuenta?{" "}
+              </p>
               <p
                 href="#"
-                className="font-medium text-[#FB8500] hover:underline"
+                className="sm:text-xs lg:text-lg md:text-md text-center text-[#FB8500] hover:underline"
               >
                 
                 <Link to="/SignUp" > Registrate </Link>
               </p>
-            </p>
             <div className='flex items-center my-4 before:border-t before:flex-1 before:border-gray-300 after:border-t after:flex-1 after:border-gray-300'>
             <p className="sm:text-s lg:text-xl md:text-lg font-semibold text-black ">
                o inicia sesion
