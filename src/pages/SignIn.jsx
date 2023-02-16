@@ -1,13 +1,18 @@
 import { useState }from 'react'
-import React from "react";
 import {AiFillEyeInvisible, AiFillEye} from "react-icons/ai";
-import { Link } from 'react-router-dom';
-import OAuth from '../components/OAuth';
+import { Link, useNavigate } from 'react-router-dom';
+import OAuth from "../components/OAuth";
+import {
+  signInWithEmailAndPassword, 
+  getAuth,  
+} from "firebase/auth";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
   const [showPassword, setShowPassWord] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(
-    {email:"",
+    { email:"",
     password:"",}
   );
 
@@ -17,8 +22,26 @@ const SignIn = () => {
     setFormData((prevState)=> ({
       ...prevState,
       [e.target.id]: e.target.value,
+    }));
+  };
+
+  const OnSignIn = async (e) => {
+      e.preventDefault();
+    try {
+      const auth = getAuth()
+      const userCredential = await signInWithEmailAndPassword(
+        auth, 
+        email, 
+        password
+        );
+      if (userCredential.user) {
+        toast.success('Bienvenido');
+        navigate('/');
+      }
+    } catch (error) {
+      toast.error(error.message);
+      console.log(error);
     }
-    ))
   }
 
   return (
@@ -49,7 +72,8 @@ const SignIn = () => {
             <h1 className="text-3xl font-semibold text-center text-black ">
               Iniciar sesion
             </h1>
-            <form className="mt-6">
+            <form 
+            className="mt-6" onSubmit={OnSignIn} >
               <div className="mb-2">
                 <label
                   htmlFor="email"
