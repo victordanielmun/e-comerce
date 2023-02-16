@@ -1,5 +1,4 @@
 import { useState } from "react";
-import React from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { db } from "../firebase";
