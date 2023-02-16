@@ -1,8 +1,14 @@
 import { useState }from 'react'
 import React from "react";
 import {AiFillEyeInvisible, AiFillEye} from "react-icons/ai";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import OAuth from '../components/OAuth';
+import {
+  sendPasswordResetEmail, 
+  getAuth,  
+} from "firebase/auth";
+import { toast } from "react-toastify";
+
 
 const ForgotPassword = () => {
   const [showPassword, setShowPassWord] = useState(false);
@@ -20,6 +26,17 @@ const ForgotPassword = () => {
       [e.target.id]: e.target.value,
     }
     ))
+  }
+
+  const resetPassword = async(e) => {
+    e.preventDefault();
+    const auth = getAuth()
+    try {
+      sendPasswordResetEmail(auth, email )
+      toast.success('Revisa tu correo para restablecer tu contraseña'); 
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
 
   return (
@@ -50,7 +67,10 @@ const ForgotPassword = () => {
             <h1 className="text-3xl font-semibold text-center text-black ">
               Olvidaste tu contraseña?
             </h1>
-            <form className="mt-6">
+            <form 
+            className="mt-6" 
+            onSubmit={resetPassword}
+            >
               
               <div className="mb-2">
                 <label
